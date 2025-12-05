@@ -1,0 +1,955 @@
+<!DOCTYPE html><html lang="pt-BR"><head>
+    <script src="protecao.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banco Inter - Empréstimo Pessoal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #333;
+            background-color: #fff;
+            line-height: 1.5;
+        }
+
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 20px;
+            background-color: #fff;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #ff7a02;
+        }
+
+        .logo img{
+            width: 90px;
+        }
+        .menu-icon {
+            width: 24px;
+            height: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+
+        .menu-line {
+            width: 100%;
+            height: 3px;
+            background-color: #333;
+            border-radius: 2px;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #ff7a02 0%, #ff5c00 100%);
+            padding: 0px 0px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-image {
+            position: absolute;
+            right: -50px;
+            top: 20px;
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+        }
+
+        .hero-title {
+            color: #fff;
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .hero-subtitle {
+            color: #fff;
+            font-size: 14px;
+            margin-bottom: 20px;
+            opacity: 0.95;
+        }
+
+        .hero-value {
+            background-color: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 16px 20px;
+            border-radius: 12px;
+            display: inline-block;
+            margin-bottom: 16px;
+        }
+
+        .hero-value-label {
+            color: #fff;
+            font-size: 12px;
+            margin-bottom: 4px;
+        }
+
+        .hero-value-amount {
+            color: #fff;
+            font-size: 36px;
+            font-weight: 700;
+        }
+
+        .simulate-btn {
+            background-color: #1a1a1a;
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 25px;
+            border: none;
+            font-size: 14px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+
+        /* Advantages Section */
+        .advantages {
+            padding: 32px 20px;
+            background-color: #fff;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 24px;
+            color: #333;
+        }
+
+        .advantage-card {
+            background-color: #fff5eb;
+            padding: 16px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 16px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .advantage-icon {
+            width: 60px;
+            height: 60px;
+            background-color: #ff7a02;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .advantage-text h3 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 4px;
+            color: #333;
+        }
+
+        .advantage-text p {
+            font-size: 12px;
+            color: #666;
+            line-height: 1.4;
+        }
+
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 6px;
+            margin-top: 16px;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 4px;
+            background-color: #e0e0e0;
+        }
+
+        .dot.active {
+            width: 24px;
+            background-color: #ff7a02;
+        }
+
+        .carousel-arrow {
+            background-color: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
+
+        .arrow-left {
+            left: -16px;
+        }
+
+        .arrow-right {
+            right: -16px;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 32px 20px;
+            background-color: #fafafa;
+            text-align: center;
+        }
+
+        .cta-text {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        .cta-subtext {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+         
+        /* Estilo original do botão */
+        .cta-button {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, #ff7a02 0%, #ff5c00 100%);
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            font-size: 17px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 16px rgba(255, 122, 2, 0.25);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 122, 2, 0.4);
+        }
+
+        .cta-button:active {
+            transform: translateY(0);
+        }
+
+        /* Estado disabled */
+        .cta-button:disabled {
+            background: linear-gradient(135deg, #a5a5a5 0%, #8a8a8a 100%);
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Estado loading */
+        .cta-button.loading {
+            color: transparent;
+        }
+
+        .cta-button.loading::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 24px;
+            height: 24px;
+            margin: -12px 0 0 -12px;
+            border: 3px solid transparent;
+            border-top: 3px solid white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Estado de sucesso */
+        .cta-button.success {
+            background: linear-gradient(135deg, #00c853 0%, #00a844 100%);
+            box-shadow: 0 4px 16px rgba(0, 200, 83, 0.25);
+        }
+
+        .success-message {
+            text-align: center;
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(0, 200, 83, 0.1);
+            border-radius: 10px;
+            color: #00c853;
+            font-weight: 600;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.4s ease;
+        }
+
+        .success-message.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .info-box {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 30px;
+        }
+
+        .info-box h3 {
+            color: white;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .info-box ul {
+            color: rgba(255, 255, 255, 0.7);
+            padding-left: 20px;
+            line-height: 1.6;
+        }
+
+        .info-box li {
+            margin-bottom: 8px;
+        }
+
+        .security-note {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 16px;
+            font-size: 12px;
+            color: #666;
+        }
+
+        /* How To Section */
+        .how-to {
+            padding: 32px 20px;
+            background-color: #fff;
+        }
+
+        .how-to-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            color: #333;
+        }
+
+        .step {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 24px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .step:last-child {
+            border-bottom: none;
+        }
+
+        .step-icon {
+            width: 40px;
+            height: 40px;
+            background-color: #fff5eb;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 20px;
+        }
+
+        .step-content h3 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: #333;
+        }
+
+        .step-content p {
+            font-size: 12px;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        /* Stats Section */
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            padding: 24px 20px;
+            background-color: #fafafa;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: #ff7a02;
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: #666;
+        }
+
+        /* Simulator CTA */
+        .simulator-cta {
+            margin: 24px 20px;
+            background: linear-gradient(135deg, #ff7a02 0%, #ff5c00 100%);
+            padding: 20px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 4px 12px rgba(255, 122, 2, 0.3);
+        }
+
+        .simulator-content {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .simulator-icon {
+            width: 50px;
+            padding: 8px;
+            height: 50px;
+            background-color: rgb(24, 24, 24);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #000000;
+            font-size: 20px;
+        }
+
+        .simulator-text h3 {
+            color: #000000;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .simulator-text p {
+            color: rgba(0, 0, 0, 0.9);
+            font-size: 12px;
+        }
+
+        .simulator-arrow {
+            color: #000000;
+            font-size: 20px;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 32px 20px;
+            background-color: #fff;
+        }
+
+        .testimonials-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            text-align: center;
+            color: #333;
+        }
+
+        .testimonial {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 20px;
+            padding: 16px;
+            background-color: #fafafa;
+            border-radius: 12px;
+        }
+
+        .testimonial-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background-color: #e0e0e0;
+            flex-shrink: 0;
+        }
+
+        .testimonial-content h4 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 4px;
+            color: #333;
+        }
+
+        .testimonial-content p {
+            font-size: 12px;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        /* Process Section */
+        .process {
+            padding: 32px 20px;
+            background-color: #fafafa;
+            text-align: center;
+        }
+
+        .process-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #333;
+        }
+
+        .process-subtitle {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 24px;
+        }
+
+        .process-cta {
+            background: linear-gradient(135deg, #ff7a02 0%, #ff5c00 100%) ; 
+            color: #fff;
+            padding: 16px 32px;
+            border-radius: 25px;
+            border: none;
+            font-size: 16px;
+            font-weight: 700;
+            width: 100%;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(255, 122, 2, 0.3);
+        }
+        .testimonials {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
+
+.testimonials-title {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.testimonial {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.testimonial-avatar img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.testimonial-content {
+    max-width: 600px;
+}
+
+.testimonial-content h4 {
+    font-size: 18px;
+    margin: 0;
+}
+
+.star-rating {
+    color: #ffcc00; /* Yellow color for stars */
+    font-size: 18px;
+}
+
+.testimonial-content p {
+    margin-top: 10px;
+    font-size: 16px;
+    line-height: 1.5;
+}
+/* Advantages Section */
+.advantages {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.advantages h2 {
+    font-size: 19px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.advantage {
+    display: flex;
+    background-color: #F9F6F0; /* Light background similar to the image */
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    align-items: center;
+}
+
+.advantage-iconx img {
+    width: 40px;
+    height: 40px;
+    margin-right: 20px;
+}
+
+.advantage-content h3 {
+    font-size: 18px;
+    color: #3C3C3C; /* Dark gray for the title */
+    margin-bottom: 10px;
+}
+
+.advantage-content p {
+    font-size: 14px;
+    color: #3C3C3C; /* Dark gray for the text */
+    line-height: 1.5;
+}
+.advantage-icon-img{
+    margin-right: 20px;
+}
+.advantage-icon-img img{
+width: 40px;
+}
+/* Styling for the entire section */
+.advantages {
+    padding: 30px;
+    font-family: Arial, sans-serif;
+}
+
+/* Title styling */
+.section-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* Card styling */
+.advantage-card {
+    display: flex;
+    align-items: center;
+    background-color: #F9F6F0; 
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 1400px;
+    margin: auto;
+    position: relative;
+}
+
+/* Icon styling */
+.advantage-icon {
+    background-color: linear-gradient(135deg, #ff7a02 0%, #ff5c00 100%); /* Orange background */
+    padding: 12px;
+}
+
+.advantage-icon svg {
+    fill: white;
+}
+
+/* Text content styling */
+.advantage-text h3 {
+    font-size: 18px;
+    font-weight: bold;
+    color: #3C3C3C; /* Dark gray for heading */
+    margin: 0;
+}
+
+.advantage-text p {
+    font-size: 12.5px;
+    color: #3C3C3C;
+}
+
+/* Button styling */
+.advantage-btn button {
+    background: linear-gradient(135deg, #ff7a02 0%, #ff5c00 100%) !important; /* Same as icon */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 10px;
+    font-weight: bold;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    border-radius: 20px;
+    margin-top: -25px;
+    padding: 6px 10px;
+
+}
+
+
+
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo"><img src="images/logo.png" alt=""></div>
+        <div class="menu-icon">
+            <div class="menu-line"></div>
+            <div class="menu-line"></div>
+            <div class="menu-line"></div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <img src="images/banner.png" width="100%" alt="">
+    </section>
+
+<!-- Advantages Section -->
+<section class="advantages">
+    <h2 class="section-title">Vantagens pensadas para você</h2>
+    <div class="advantage-card">
+        <div class="advantage-icon">
+            <!-- SVG Icon (⚡) -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M13 2L7 14h7l-4 8L17 10H10z"></path>
+            </svg>
+        </div>
+        <div class="advantage-text">
+            <h3>Dinheiro na hora</h3>
+            <p>Direto em sua conta bancária</p>
+        </div>
+        <div class="advantage-btn">
+            <button>Empréstimo do Inter</button>
+        </div>
+    </div>
+</section>
+
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <p class="cta-text">Clique no botão abaixo e consulte</p>
+        <p class="cta-subtext">seu valor disponível em segundos ▾</p>
+           <button class="cta-button" onclick="handleClick(this)">
+        Liberar meu crédito agora
+    </button>
+        <div class="security-note">
+            <span>🔒</span>
+            <span>Seus dados estão protegidos e seguros</span>
+        </div>
+    </section>
+
+    <!-- How To -->
+    <section class="how-to">
+        <h2 class="how-to-title">Veja como liberar:</h2>
+        
+        <div class="step">
+            <div class="step-icon">📋</div>
+            <div class="step-content">
+                <h3>1- Preencha seus dados</h3>
+                <p>Informe seu CPF e dados básicos para visualizar sua proposta de forma rápida e segura.</p>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step-icon">💰</div>
+            <div class="step-content">
+                <h3>2- Escolha o valor</h3>
+                <p>Defina o valor desejado e o número de parcelas que cabem no seu bolso.</p>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step-icon">✅</div>
+            <div class="step-content">
+                <h3>3- Valor aprovado</h3>
+                <p>Pronto! O dinheiro cai na sua conta imediatamente ou na sua conta Inter.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="stats">
+        <div class="stat">
+            <div class="stat-value">+40mi</div>
+            <div class="stat-label">Clientes</div>
+        </div>
+        <div class="stat">
+            <div class="stat-value">4.9/5</div>
+            <div class="stat-label">Avaliação</div>
+        </div>
+        <div class="stat">
+            <div class="stat-value">5 min</div>
+            <div class="stat-label">Aprovação</div>
+        </div>
+    </section>
+
+    <!-- Simulator CTA -->
+    <div class="simulator-cta">
+        <div class="simulator-content">
+            <div class="simulator-icon"><img src="images/calc.png" width="30px" alt=""></div>
+            <div class="simulator-text">
+                <h3>Simular Empréstimo</h3>
+                <p>Veja opções personalizadas para você</p>
+            </div>
+        </div>
+        <div class="simulator-arrow">→</div>
+    </div>
+
+   <!-- Testimonials -->
+<section class="testimonials">
+    <h2 class="testimonials-title">O que dizem nossos clientes:</h2>
+    
+    <div class="testimonial">
+        <div class="testimonial-avatar">
+            <!-- Replace with an image -->
+            <img src="images/fake-3.jpg" alt="Heloísa Queiroz">
+        </div>
+        <div class="testimonial-content">
+            <h4>Heloísa Queiroz</h4>
+            <div class="star-rating">
+                <!-- Star ratings (5 stars) -->
+                ★★★★☆
+            </div>
+            <p>“Eu tava precisando urgente pra pagar umas contas. Fiz o pedido e no mesmo dia o dinheiro caiu na conta.”</p>
+        </div>
+    </div>
+
+    <div class="testimonial">
+        <div class="testimonial-avatar">
+            <!-- Replace with an image -->
+            <img src="images/PjRLpiE4.jpg" alt="Maria Conceição">
+        </div>
+        <div class="testimonial-content">
+            <h4>Maria Conceição</h4>
+            <div class="star-rating">
+                <!-- Star ratings (5 stars) -->
+                ★★★★☆
+            </div>
+            <p>“Sou aposentada e fiquei com medo no começo, mas foi tudo certinho. Dinheiro caiu rápido e sem complicação.”</p>
+        </div>
+    </div>
+</section>
+
+
+<!-- Advantages Section -->
+<section class="advantages">
+    <h2>Conheça as vantagens de contratar seu empréstimo no Inter</h2>
+    
+    <div class="advantage">
+        <div class="advantage-icon-img">
+            <!-- Icon: Replace with your own icon or image -->
+            <img src="images/sofa.png" alt="Comodidades e agilidade">
+        </div>
+        <div class="advantage-content">
+            <h3>Comodidades e agilidade</h3>
+            <p>Simule e contrate sem precisar sair de casa, sem burocracia e com atendimento personalizado.</p>
+        </div>
+    </div>
+
+    <div class="advantage">
+        <div class="advantage-icon-img">
+            <!-- Icon: Replace with your own icon or image -->
+            <img src="images/tel.png" alt="Análise rápida e simplificada">
+        </div>
+        <div class="advantage-content">
+            <h3>Análise rápida e simplificada</h3>
+            <p>Receba o seu dinheiro de forma segura, rápida e simples.</p>
+        </div>
+    </div>
+
+    <div class="advantage">
+        <div class="advantage-icon-img">
+            <!-- Icon: Replace with your own icon or image -->
+            <img src="images/person.png" alt="Taxas Diferenciadas">
+        </div>
+        <div class="advantage-content">
+            <h3>Taxas Diferenciadas</h3>
+            <p>Juros menores, condições exclusivas e taxas personalizadas.</p>
+        </div>
+    </div>
+</section>
+
+
+    <!-- Process -->
+    <section class="process">
+        <h2 class="process-title">Processo 100% online,</h2>
+        <p class="process-subtitle">rápido e seguro.</p>
+        <p class="process-subtitle" style="margin-bottom: 24px;">Ative seu crédito e receba com segurança ✓</p>
+      
+
+        <button class="cta-button" onclick="handleClick(this)">
+       Ativar meu crédito agora
+    </button>
+    </section>
+
+
+<script>
+const buttons = document.querySelectorAll('button');
+
+buttons.forEach(button => {
+    button.addEventListener('click', () => {
+        // Criar um formulário dinâmico para fazer POST
+        const form = document.createElement('form');
+        form.method = 'POST';
+        form.action = ''; // Envia para a mesma página
+        
+        // Adicionar campo hidden com a etapa atual
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = 'etapa';
+        input.value = 'etapa1';
+        
+        form.appendChild(input);
+        document.body.appendChild(form);
+        form.submit();
+    });
+});
+</script>
+<script>
+        function handleClick(button) {
+            // Desabilita o botão
+            button.disabled = true;
+            
+            // Adiciona classe de loading
+            button.classList.add('loading');
+            
+            // Simula uma requisição de 3 segundos
+            setTimeout(() => {
+                // Remove loading
+                button.classList.remove('loading');
+                
+              
+                // Reativa o botão após 4 segundos
+                setTimeout(() => {
+                    button.classList.remove('success');
+                    button.disabled = false;
+                }, 4000);
+                
+            }, 3000);
+        }
+    </script>
+
+
+</body></html>
